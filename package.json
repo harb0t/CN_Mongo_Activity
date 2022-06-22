@@ -1,0 +1,25 @@
+{
+  "name": "cn_mongo_activity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "mongodb": "^4.7.0",
+    "yargs": "^17.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harb0t/MongoActivity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harb0t/MongoActivity/issues"
+  },
+  "homepage": "https://github.com/harb0t/MongoActivity#readme"
+}
