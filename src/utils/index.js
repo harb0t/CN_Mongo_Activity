@@ -1,4 +1,9 @@
-// functions / async due to working with database
+// functions /// 
+// async due to working with database
+
+
+// add film function //
+
 exports.addFilm = async (collection, filmObj) => {
     try {
         // add database entry using built in method of insertOne and passing the filmObj entered by the user
@@ -9,8 +14,7 @@ exports.addFilm = async (collection, filmObj) => {
     }
 };
 
-// Update film entry
-
+// list films function // 
 
 exports.listFilms = async (collection) => {
     try {
@@ -21,27 +25,34 @@ exports.listFilms = async (collection) => {
     }
 };
 
-// Update film entry // Doesn't work :P
+// Update film entry function // 
 
-exports.editFilm = async (collection, filmObj, edit) => {
-    try {
-    const editEntry = await collection.updateOne(
-        { filmObj },
-        { $set: { edit } }
-    );
-    console.log(editEntry);
-    } catch (error) {
-    console.log(error);
+
+exports.updateFilm = async (collection, oldTitle, newFilm) => {
+    try{
+        const checkTitle = {title:oldTitle};
+        const updateTo = {$set:{title:newFilm.title,actor:newFilm.actor}};
+        const filmUpdate = await collection.updateOne(checkTitle,updateTo);
+        console.log(filmUpdate);
+    }
+    catch (error){
+        console.log(error);
     }
 };
 
-// Delete film function
 
-exports.deleteFilm = async (collection, movieObj) => {
+// Delete film function // 
+
+exports.deleteFilm = async (collection, filmObj) => {
     try {
-    const deleteFilm = await collection.deleteOne({ title: movieObj.title});
+    const deleteFilm = await collection.deleteOne({ title: filmObj.title});
     console.log(deleteFilm);
     } catch (error) {
     console.log(error);
     }
 };
+
+
+
+// notes:
+// keys on the left /// values on right

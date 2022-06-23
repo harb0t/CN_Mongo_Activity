@@ -1,10 +1,18 @@
+// import yargs
 const yargs = require("yargs");
 
+// secure password connection to database using .env (dotenv module)
 const { connection, client } = require("./db/connection");
 
-const { addFilm, listFilms, editFilm, deleteFilm } = require("./utils");
+
+// import functions
+const { addFilm, listFilms, updateFilm, deleteFilm } = require("./utils");
+
+
 
 // async awaits for function before finishing
+
+
 const app = async ( yargsObj) => {
     const collection = await connection();
     if (yargsObj.add) {
@@ -14,16 +22,12 @@ const app = async ( yargsObj) => {
     } else if (yargsObj.list) {
         await listFilms (collection)
 
-// UPDATING ENTRY // Doesn't work :P
+// UPDATING ENTRY //
 
-} else if (yargsObj.edit) {
-    await editFilm(collection,
-    {
-        title: yargsObj.title,
-        actor: yargsObj.actor,
-    },
-    { $set: { title: yargsObj.title, actor: yargsObj.actor } }
-    );
+    } else if(yargsObj.update){
+        await updateFilm(collection,yargsObj.update, {title:yargsObj.title,actor:yargsObj.actor});
+        console.log("Entry updated!");
+
 
 // DELETE
 
@@ -36,8 +40,8 @@ const app = async ( yargsObj) => {
 
     } else {
         console.log("Incorrect command");
-    }
-    // closes connection to database
+        }
+        // closes connection to database
     await client.close();
 };
 
